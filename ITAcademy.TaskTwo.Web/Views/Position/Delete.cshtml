@@ -1,0 +1,21 @@
+﻿@model ITAcademy.TaskTwo.Web.ViewModels.PositionVM.PositionDelete
+@section Title
+{
+    Удалить должность из базы - ITAcademy.TaskTwo.Web
+}
+<h4>Удаление должности из базы</h4>
+<hr />
+<div>
+    <dl class="dl-horizontal">
+        <dt>Название должности</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+    <form asp-controller="Position" asp-action="Delete" asp-route-id="@Model.Id" method="post" class="btn-inline">
+        <input type="submit" value="Удалить" />&nbsp; &nbsp;
+    </form>
+    <form asp-controller="Position" asp-action="Index" method="get" class="btn-inline">
+        <input type="submit" value="Отмена" />
+    </form>
+</div>

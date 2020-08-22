@@ -1,0 +1,16 @@
+{
+  "NameMinLength": 2,
+  "NameMaxLength": 50,
+  "EmailMaxLength": 50,
+  "PhonePattern": "^\\+[1-9]{1}\\d{10,11}$",
+  "SubjectNameMinLength": 2,
+  "SubjectNameMaxLength": 50,
+  "PositionNameMinLength": 2,
+  "PositionNameMaxLength": 50,
+  "EmailMessageContent": 500,
+  "SmsMessageContent": 120,
+  "UserNameMinLength": 3,
+  "UserNameMaxLength": 15,
+  "PasswordMinLength": 5,
+  "PasswordMaxLength": 15
+}

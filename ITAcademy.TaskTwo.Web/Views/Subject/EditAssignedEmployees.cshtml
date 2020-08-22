@@ -1,0 +1,27 @@
+﻿@model ITAcademy.TaskTwo.Logic.Models.SubjectDTO.SubjectWithEmployees
+@section Title
+{
+    Редактирование списка преподавателей данного предмета - ITAcademy.TaskTwo.Web
+}
+<h4>Отметьте преподавателей предмета "@Model.Name"</h4>
+<br />
+<p><strong>Список сотрудников:</strong></p>
+
+<form asp-action="EditAssignedEmployees" asp-controller="Subject" method="post">
+    @for (var i = 0; i < Model.AllEmployees.Count; i++)
+    {
+        <p>
+            <input type="checkbox" asp-for="@Model.AllEmployees[i].Assigned" />
+            <label asp-for="@Model.AllEmployees[i].Assigned">
+                &nbsp; &nbsp;
+                @Model.AllEmployees[i].SurName @Model.AllEmployees[i].FirstName @Model.AllEmployees[i].SecondName
+            </label>
+            <input type="hidden" asp-for="@Model.AllEmployees[i].Id" />
+        </p>
+    }
+    <p>
+        <input type="submit" value="Сохранить" />
+    </p>
+</form>      
+<hr />
+<a asp-controller="Subject" asp-action="Index">Вернуться к списку учебных предметов</a>

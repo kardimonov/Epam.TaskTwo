@@ -1,0 +1,28 @@
+﻿@model ITAcademy.TaskTwo.Web.ViewModels.SubjectVM.SubjectDetails
+@section Title
+{
+    Подробности об учебном предмете - ITAcademy.TaskTwo.Web
+}
+<h4>Подробности об учебном предмете</h4>
+<br />
+<div>
+    <dl class="dl-horizontal">
+
+        <dt>Название учебного предмета</dt>
+        <dd>@Model.Name</dd>
+
+        <dt>Список сотрудников, которые преподают данный предмет:</dt>
+        @foreach (var employee in Model.Employees)
+        {
+    <dd>@employee.SurName @employee.FirstName @employee.SecondName</dd>
+        }
+
+    </dl>
+    <p>
+        <a asp-action="EditAssignedEmployees" asp-controller="Subject" asp-route-id="@Model.Id">
+            Изменить список преподавателей предмета "@Model.Name"
+        </a>
+    </p>
+</div>
+<hr />
+<a asp-controller="Subject" asp-action="Index">Вернуться к списку учебных предметов</a>

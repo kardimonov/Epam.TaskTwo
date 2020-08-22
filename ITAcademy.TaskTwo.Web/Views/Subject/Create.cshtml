@@ -1,0 +1,25 @@
+﻿@model ITAcademy.TaskTwo.Web.ViewModels.SubjectVM.SubjectCreate
+@section Title
+{
+    Добавление нового предмета - ITAcademy.TaskTwo.Web
+}
+<h4>Добавление нового учебного предмета</h4>
+<br />
+<form asp-action="Create" asp-controller="Subject" method="post">
+    <div asp-validation-summary="ModelOnly" class="validation"></div>
+    <p>
+        <label asp-for="Name" class="required"></label><br />
+        <input asp-for="Name" class="col-sm-7" />
+        <span asp-validation-for="Name"></span><br />
+    </p>
+    <p>
+        <input type="submit" value="Добавить" />
+    </p>
+</form>
+<p class="text-small"><font class="required">&nbsp;</font> - поле обязательное для заполнения</p>
+<hr />
+<a asp-controller="Subject" asp-action="Index">Вернуться к списку учебных предметов</a>
+
+@section scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

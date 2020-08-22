@@ -1,0 +1,35 @@
+﻿@section Title
+{
+    Вход в систему / Регистрация нового пользователя - ITAcademy.TaskTwo
+}
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <div class="card login-logout-tab">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#login" aria-controls="login" data-toggle="tab">Sign In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#register" aria-controls="register" data-toggle="tab">Register</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-12 pt-3 px-4">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="login">
+                        @await Component.InvokeAsync("Login")
+                    </div>
+                    <div class="tab-pane" id="register">
+                        @await Component.InvokeAsync("Register")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+<script src="~/js/tabSwitch.js" asp-append-version="true"></script>
+}

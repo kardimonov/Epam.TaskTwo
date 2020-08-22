@@ -1,0 +1,50 @@
+﻿@using ITAcademy.TaskTwo.Data.Enums
+@model ITAcademy.TaskTwo.Web.ViewModels.EmployeeVM.EmployeeCreate
+@section Title
+{
+    Добавление нового сотрудника - ITAcademy.TaskTwo.Web
+}
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<h4>Введите данные нового сотрудника</h4>
+<form asp-action="Create" asp-controller="Employee" method="post">
+    <div asp-validation-summary="ModelOnly" class="validation"></div>
+    <p>
+        <label asp-for="FirstName" class="required"></label><br />
+        <input asp-for="FirstName" class="col-sm-4" />
+        <span asp-validation-for="FirstName"></span><br />
+    </p>
+    <p>
+        <label asp-for="SecondName"></label><br />
+        <input asp-for="SecondName" class="col-sm-4" />
+        <span asp-validation-for="SecondName"></span><br />
+    </p>
+    <p>
+        <label asp-for="SurName" class="required"></label><br />
+        <input asp-for="SurName" class="col-sm-4" />
+        <span asp-validation-for="SurName"></span><br />
+    </p>
+    <p>
+        <label asp-for="Birth" class="required"></label><br />
+        <input asp-for="Birth" class="col-sm-4"
+               min="@DateTime.Now.AddYears(-80).ToString("yyyy-01-01")"
+               max="@DateTime.Now.AddYears(-14).ToString("yyyy-12-31")" />
+        <span asp-validation-for="Birth"></span><br />
+    </p>
+    <p>
+        <label asp-for="Email"></label><br />
+        <input asp-for="Email" class="col-sm-4" />
+        <span asp-validation-for="Email"></span>
+    </p>
+    <p>
+        <label asp-for="Communication" class="required"></label><br />
+        <input name="Communication" type="radio" value="@MessageType.Sms" />
+        <span class="ml-2">@MessageType.Sms</span><br />
+        <input checked="checked" name="Communication" type="radio" value="@MessageType.Email" />
+        <span class="ml-2">@MessageType.Email</span>
+    </p>
+    <p>
+        <input type="submit" value="Добавить" />
+    </p>
+</form>
+<p class="text-small"><font class="required">&nbsp;</font> - поле обязательное для заполнения</p>

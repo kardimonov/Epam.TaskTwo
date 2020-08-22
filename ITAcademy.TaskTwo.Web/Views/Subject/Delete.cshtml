@@ -1,0 +1,21 @@
+﻿@model ITAcademy.TaskTwo.Web.ViewModels.SubjectVM.SubjectDelete
+@section Title
+{
+    Удалить предмет из базы - ITAcademy.TaskTwo.Web
+}
+<h4>Удаление учебного предмета из базы</h4>
+<hr />
+<div>
+    <dl class="dl-horizontal">
+        <dt>Название</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+    <form asp-controller="Subject" asp-action="Delete" asp-route-id="@Model.Id" method="post" class="btn-inline">
+        <input type="submit" value="Удалить" />&nbsp; &nbsp;
+    </form>
+    <form asp-controller="Subject" asp-action="Index" method="get" class="btn-inline">
+        <input type="submit" value="Отмена" />
+    </form>
+</div>
