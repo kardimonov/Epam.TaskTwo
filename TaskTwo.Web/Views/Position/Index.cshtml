@@ -1,0 +1,70 @@
+﻿@model IEnumerable<TaskTwo.Web.ViewModels.PositionVM.PositionIndex>
+@section Title
+{
+    Position Page - ITAcademy.TaskTwo
+}
+<div class="d-flex">
+    <a asp-controller="Position" asp-action="Create">Добавить новую должность</a>
+    <a class="ml-auto" asp-controller="Account" asp-action="Register">Зарегистрировать нового пользователя</a>
+</div>
+<br />
+<p>
+    <input type="text" id="searchString" placeholder="&#x1F50D;  Search" class="form-control" />
+</p>
+<p style="display: none" class="updated-list">
+    Employee list updated. <a href="#" class="updated-list-link">Click here</a> to refresh.
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название должности</th>
+            <th>Макс. кол-во штатных единиц</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+        @foreach (var position in Model)
+        {
+        <tr>
+            <td>@position.Name</td>
+            <td>@position.MaxNumber</td>
+            <td>
+                <a asp-action="Details" asp-controller="Position" asp-route-id="@position.Id">Подробности</a> |
+                <a asp-action="Edit" asp-controller="Position" asp-route-id="@position.Id">Изменить</a> |
+                <a asp-action="Delete" asp-controller="Position" asp-route-id="@position.Id">Удалить</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/positionList.js" asp-append-version="true"></script>
+    <script src="~/js/searchEngine.js" asp-append-version="true"></script>
+    <script src="~/js/signal.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+    let renewal = new positionList({
+        links:
+            '@Html.ActionLink("Подробности", "Details", new { id = "_id_" }) | ' +
+            '@Html.ActionLink("Изменить", "Edit", new { id = "_id_" }) | ' +
+            '@Html.ActionLink("Удалить", "Delete", new { id = "_id_" })'
+    });
+
+    let positionSearch = new searchEngine({
+        searchUrl: '/Position/Search',
+        listUpdater: renewal,
+    });
+
+    let updater = new signal({
+        methodName: 'UpdatePositionList',
+        listUpdater: renewal,
+        searchOptions: {
+            isInSearch: subjectSearch.isInSearch,
+            clearSearch: subjectSearch.clearSearch
+        }
+    });
+
+    updater.startListening();
+    </script>
+}

@@ -1,0 +1,38 @@
+﻿@using TaskTwo.Data.Enums
+@model IEnumerable<TaskTwo.Web.ViewModels.MessageVM.MessageIndex>
+@section Title
+{
+    Message Page - ITAcademy.TaskTwo
+}
+<br />
+<div name="dispatch">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Полное имя адресата</th>
+                <th>Текст сообщения</th>
+                <th>Тип сообщения</th>
+                <th>Время отсылки</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var message in Model)
+            {
+                <tr @if (message.DispatchResult == MessageStatus.Failure) { <text> class="text-red" </text> }>
+                    <td>@message.FullName</td>
+                    <td>@message.Content</td>
+                    <td>@message.Type</td>
+                    <td>@message.TimeCreated</td>
+                    <td @if (message.DispatchResult == MessageStatus.Failure) { <text> class="initial-color" </text> }>
+                        <input name="messages" type="button" id="@message.Id" value="Send again" />
+                        <span id="result@(message.Id)"></span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section scripts {
+    <script src="~/js/messageDispatch.js" asp-append-version="true"></script>
+}

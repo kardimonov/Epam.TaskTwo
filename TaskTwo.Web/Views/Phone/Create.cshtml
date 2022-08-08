@@ -1,0 +1,36 @@
+﻿@model TaskTwo.Web.ViewModels.PhoneVM.PhoneCreate
+@section Title
+{
+    Добавление номера телефона - ITAcademy.TaskTwo.Web
+}
+<h4>Добавление номера телефона для сотрудника 
+    "@Model.EmployeeSurName @Model.EmployeeFirstName @Model.EmployeeSecondName"</h4>
+<br />
+<form asp-action="Create" asp-controller="Phone" asp-route-method="@Model.Method" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+    <p>
+        <label asp-for="Number"></label><br />
+        <input asp-for="Number" class="col-sm-5" placeholder="+XXXXXXXXXXXX" />
+        <span asp-validation-for="Number"></span><br />
+    </p>
+    <input type="hidden" asp-for="@Model.EmployeeId" />
+    <input type="hidden" asp-for="@Model.Method" />
+    <p>
+        <input type="submit" value="Добавить" />
+    </p>
+</form>
+<hr />
+@if (Model.Method == "Edit")
+{
+    <a asp-controller="Employee" asp-action="Edit" asp-route-id="@Model.EmployeeId">
+    Вернуться к редактированию</a>
+}
+else
+{
+    <a asp-controller="Phone" asp-action="Index" asp-route-id="@Model.EmployeeId">
+    Вернуться к списку телефонов сотрудника "@Model.EmployeeSurName @Model.EmployeeFirstName @Model.EmployeeSecondName"</a>
+}
+
+@section scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

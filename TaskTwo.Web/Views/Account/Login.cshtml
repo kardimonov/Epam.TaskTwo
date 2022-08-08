@@ -1,0 +1,31 @@
+﻿@model TaskTwo.Web.ViewModels.AccountVM.AccountLogin
+@section Title
+{
+    Вход в систему - ITAcademy.TaskTwo
+}
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<h4>Вход в приложение</h4>
+<form method="post" asp-controller="Account" asp-action="Login"
+      asp-route-returnUrl="@Model?.ReturnUrl">
+    <div asp-validation-summary="ModelOnly"></div>
+    <p>
+        <label asp-for="Name"></label><br />
+        <input asp-for="Name" class="col-sm-4" />
+        <span asp-validation-for="Name"></span>
+    </p>
+    <p>
+        <label asp-for="Password"></label><br />
+        <input asp-for="Password" class="col-sm-4" />
+        <span asp-validation-for="Password"></span>
+    </p>
+    <p>
+        <label asp-for="RememberMe"></label><br />
+        <input asp-for="RememberMe" />
+    </p>
+    <p>
+        <input type="submit" value="Войти" />
+    </p>
+</form>
+<hr />
+<a asp-controller="Account" asp-action="Register">Зарегистрироваться в приложении</a>
